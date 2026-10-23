@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "id": "hdfilmcehennemi",
+  "name": "HDFilmCehennemi",
+  "version": "1.0.0",
+  "lang": "tr",
+  "hosts": [
+    "hdfilmcehennemi.nl",
+    "*.hdfilmcehennemi.nl",
+    "hdfilmcehennemi.com",
+    "*.hdfilmcehennemi.com",
+    "hdfilmcehennemi.mobi",
+    "*.hdfilmcehennemi.mobi",
+    "hdfilmcehennemi.live",
+    "*.hdfilmcehennemi.live",
+    "hdfilmcehennemi.de",
+    "*.hdfilmcehennemi.de",
+    "hdfilmcehennemi.net",
+    "*.hdfilmcehennemi.net"
+  ],
+  "title": {
+    "strip": [
+      "\\s*[|–—-]\\s*(?:hdfilmcehennemi|film izle|hd film izle|dizi izle)[^|]*$"
+    ],
+    "episodeUrl": [
+      "/(?<season>\\d{1,2})-sezon-(?<episode>\\d{1,4})-bolum",
+      "/sezon-(?<season>\\d{1,2})/bolum-(?<episode>\\d{1,4})",
+      "/(?<season>\\d{1,2})-sezon/(?<episode>\\d{1,4})-bolum"
+    ],
+    "slugUrl": "/dizi/(?<slug>[^/]+)",
+    "yearUrl": "-((?:19|20)\\d{2})(?:-[a-z]+)?/?$"
+  },
+  "episodes": {
+    "linkUrl": [
+      "/(?<season>\\d{1,2})-sezon-(?<episode>\\d{1,4})-bolum",
+      "/sezon-(?<season>\\d{1,2})/bolum-(?<episode>\\d{1,4})",
+      "/(?<season>\\d{1,2})-sezon/(?<episode>\\d{1,4})-bolum"
+    ]
+  },
+  "player": {
+    "lazySrcAttrs": [
+      "data-src",
+      "data-lazy-src"
+    ],
+    "playSelectors": [
+      ".jw-display-icon-container",
+      ".vjs-big-play-button",
+      "[class*=\"play\" i]:not(a)"
+    ],
+    "frameFetch": true
+  },
+  "block": [
+    { "urlFilter": "disable-devtool", "action": "stub" },
+    { "urlFilter": "devtools-detect", "action": "stub" },
+    { "urlFilter": "devtools-console-detect", "action": "stub" },
+    { "urlFilter": "devtools-detector", "action": "stub" }
+  ]
+}

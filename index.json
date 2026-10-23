@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "packs": [
+    {
+      "id": "dizipal",
+      "name": "Dizipal",
+      "version": "1.0.0",
+      "lang": "tr",
+      "hosts": [
+        "dizipal.com",
+        "dizipal*.com",
+        "*.dizipal.com",
+        "*.dizipal*.com"
+      ],
+      "file": "packs/dizipal.json",
+      "sha256": "b415ea01f2fa9e7c30198383ed1fdbe73d49519dbbe26434446fce74dc58b7a4"
+    },
+    {
+      "id": "hdfilmcehennemi",
+      "name": "HDFilmCehennemi",
+      "version": "1.0.0",
+      "lang": "tr",
+      "hosts": [
+        "hdfilmcehennemi.nl",
+        "*.hdfilmcehennemi.nl",
+        "hdfilmcehennemi.com",
+        "*.hdfilmcehennemi.com",
+        "hdfilmcehennemi.mobi",
+        "*.hdfilmcehennemi.mobi",
+        "hdfilmcehennemi.live",
+        "*.hdfilmcehennemi.live",
+        "hdfilmcehennemi.de",
+        "*.hdfilmcehennemi.de",
+        "hdfilmcehennemi.net",
+        "*.hdfilmcehennemi.net"
+      ],
+      "file": "packs/hdfilmcehennemi.json",
+      "sha256": "0129170fe4e5ad553e8de7f58e40e19222f4c38668a47053b60b8db9afa0708b"
+    }
+  ]
+}

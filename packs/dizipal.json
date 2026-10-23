@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "id": "dizipal",
+  "name": "Dizipal",
+  "version": "1.0.0",
+  "lang": "tr",
+  "hosts": [
+    "dizipal.com",
+    "dizipal*.com",
+    "*.dizipal.com",
+    "*.dizipal*.com"
+  ],
+  "title": {
+    "strip": [
+      "\\s*[|–—-]\\s*(?:dizipal|dizi izle|film izle|hd film izle)[^|]*$"
+    ],
+    "episodeUrl": [
+      "/dizi/[^/]+/(?<season>\\d{1,2})-sezon/(?<episode>\\d{1,4})-bolum",
+      "/(?<season>\\d{1,2})-sezon/(?<episode>\\d{1,4})-bolum",
+      "/sezon-(?<season>\\d{1,2})/bolum-(?<episode>\\d{1,4})",
+      "(?<season>\\d{1,2})-sezon-(?<episode>\\d{1,4})-bolum",
+      "sezon-(?<season>\\d{1,2})-bolum-(?<episode>\\d{1,4})"
+    ],
+    "slugUrl": "/dizi/(?<slug>[^/]+)",
+    "yearUrl": "-((?:19|20)\\d{2})(?:-[a-z]+)?/?$"
+  },
+  "episodes": {
+    "linkUrl": [
+      "/dizi/[^/]+/(?<season>\\d{1,2})-sezon/(?<episode>\\d{1,4})-bolum",
+      "/(?<season>\\d{1,2})-sezon/(?<episode>\\d{1,4})-bolum",
+      "/sezon-(?<season>\\d{1,2})/bolum-(?<episode>\\d{1,4})",
+      "(?<season>\\d{1,2})-sezon-(?<episode>\\d{1,4})-bolum",
+      "sezon-(?<season>\\d{1,2})-bolum-(?<episode>\\d{1,4})"
+    ]
+  },
+  "player": {
+    "lazySrcAttrs": [
+      "data-src",
+      "data-lazy-src"
+    ],
+    "playSelectors": [
+      ".jw-display-icon-container",
+      ".vjs-big-play-button",
+      "[class*=\"play\" i]:not(a)"
+    ],
+    "frameFetch": true
+  },
+  "block": [
+    { "urlFilter": "disable-devtool", "action": "stub" },
+    { "urlFilter": "devtools-detect", "action": "stub" },
+    { "urlFilter": "devtools-console-detect", "action": "stub" },
+    { "urlFilter": "devtools-detector", "action": "stub" }
+  ]
+}
