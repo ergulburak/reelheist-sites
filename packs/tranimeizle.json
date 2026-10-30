@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "id": "tranimeizle",
+  "name": "TR Anime İzle",
+  "version": "1.0.0",
+  "lang": "tr",
+  "hosts": [
+    "tranimeizle.live",
+    "*.tranimeizle.live",
+    "tranimeizle.io",
+    "*.tranimeizle.io",
+    "tranimeizle.net",
+    "*.tranimeizle.net",
+    "tranimeizle.top",
+    "*.tranimeizle.top",
+    "tranimeizle.co",
+    "*.tranimeizle.co"
+  ],
+  "title": {
+    "strip": [
+      "\\s*[|–—-]\\s*(?:anime izle|anime tv|türkanime)[^|]*$",
+      "\\s*(?:\\d{1,2}\\s*\\.\\s*sezon\\s*)?\\d{1,4}\\s*\\.\\s*b[öo]l[üu]m.*$"
+    ],
+    "episodeUrl": [
+      "(?:-(?<season>\\d{1,2})-sezon)?-(?<episode>\\d{1,4})-bolum-izle(?:-[a-z0-9]+)?/?$"
+    ],
+    "slugUrl": "^/(?:anime/)?(?<slug>[^/]+?)(?:-\\d{1,2}-sezon)?(?:-\\d{1,4}-bolum)?-izle(?:-[a-z0-9]+)?/?$",
+    "yearUrl": "-((?:19|20)\\d{2})(?:-\\d{1,2}-sezon)?-izle(?:-[a-z0-9]+)?/?$"
+  },
+  "episodes": {
+    "linkUrl": [
+      "(?:-(?<season>\\d{1,2})-sezon)?-(?<episode>\\d{1,4})-bolum-izle(?:-[a-z0-9]+)?/?$"
+    ]
+  },
+  "player": {
+    "lazySrcAttrs": [
+      "data-src",
+      "data-lazy-src"
+    ],
+    "playSelectors": [
+      "#sourceList:not(:has(.selected)) li.sourceBtn:first-child",
+      ".jw-display-icon-container",
+      ".vjs-big-play-button"
+    ],
+    "frameFetch": true
+  },
+  "block": [
+    { "urlFilter": "disable-devtool", "action": "stub" },
+    { "urlFilter": "devtools-detect", "action": "stub" },
+    { "urlFilter": "devtools-console-detect", "action": "stub" },
+    { "urlFilter": "devtools-detector", "action": "stub" }
+  ]
+}

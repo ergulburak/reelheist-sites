@@ -1,9 +1,10 @@
 # ReelHeist Örnek Site Paket Deposu (`reelheist-sites`)
 
-Bu klasör, ReelHeist eklentisinin **Site Depoları** bölümüne eklenebilen örnek bir imzalı site paket deposudur. İçerisinde iki site paketi yer alır:
+Bu klasör, ReelHeist eklentisinin **Site Depoları** bölümüne eklenebilen örnek bir imzalı site paket deposudur. İçerisinde üç site paketi yer alır:
 
 - [`packs/dizipal.json`](packs/dizipal.json) — Dizipal (`dizipal*.com`) başlık/sezon/bölüm ayrıştırma, oynatıcı tetikleme ve DevTools koruma kuralları
 - [`packs/hdfilmcehennemi.json`](packs/hdfilmcehennemi.json) — HDFilmCehennemi (`hdfilmcehennemi.nl`, `.com`, `.mobi` vb.) film/dizi ayrıştırma, `data-src` oynatıcı tetikleme ve DevTools koruma kuralları
+- [`packs/tranimeizle.json`](packs/tranimeizle.json) — TR Anime İzle (`tranimeizle.live`, `.io`, `.net` vb.) anime/bölüm ayrıştırma, kaynak listesinden oynatıcı tetikleme ve DevTools koruma kuralları. Site notları için aşağıya bakın.
 
 ## Klasör Yapısı
 
@@ -17,10 +18,23 @@ reelheist-sites/
 │   ├── dizipal.json              # Dizipal site paketi
 │   ├── dizipal.json.sig          # Ed25519 imzası (otomatik üretilir)
 │   ├── hdfilmcehennemi.json      # HDFilmCehennemi site paketi
-│   └── hdfilmcehennemi.json.sig  # Ed25519 imzası (otomatik üretilir)
+│   ├── hdfilmcehennemi.json.sig  # Ed25519 imzası (otomatik üretilir)
+│   ├── tranimeizle.json          # TR Anime İzle site paketi
+│   └── tranimeizle.json.sig      # Ed25519 imzası (otomatik üretilir)
 └── test/
     └── packs.test.mjs            # Paket doğrulama ve ayrıştırma testleri
 ```
+
+## Site Notları
+
+### TR Anime İzle (`tranimeizle`)
+
+- **Adres yapısı:** Dizi sayfası `/anime/<ad>-izle` (ör. `/anime/Ranma-2024-izle-1`), bölüm sayfası `/<ad>-<n>-bolum-izle` (ör. `/ranma-2024-1-bolum-izle`). İlk sezonun adreslerinde sezon numarası yoktur; paket bu bölümleri 1. sezon sayar. Sonraki sezonlar ayrı dizi sayfalarıdır (`/anime/Ranma-2024-2-sezon-izle-1`) ve bölüm adresleri `-2-sezon-` parçası taşır.
+- **Bölüm listesi dizi sayfasındadır.** Bölüm sayfasında yalnızca "Sonraki Bölüm" bağlantısı bulunur. Sezon indirme ve "Diziyi takip et" için eklenti menüsünü **dizi sayfasında** (`/anime/...`) açın. Eklenti, bölüm listesi olan dizi sayfasında sezon kutusunu da gösterir (0.4.1 sonrasındaki sürümler).
+- **Bot kontrolü:** Site, dizi ve bölüm sayfalarını ilk ziyarette `/api/CaptchaChallenge/...` adresine yönlendirir ve bir resim seçme testi (IconCaptcha) ister. Test, oturum çerezi (`.AitrWeb.Session`, tarayıcı kapanınca silinir) ile geçilir. ReelHeist bu testi **çözmez**; testi tarayıcıda kendiniz bir kez çözün. Eklentinin çözücü penceresi aynı tarayıcı profilini kullandığı için sezon indirme ve takip denetimi çözülmüş oturumla çalışır. Tarayıcıyı yeniden başlattıktan sonra siteyi bir kez açıp testi tekrar geçin; aksi halde takip denetimi bölüm listesi bulamaz ve kart "boş" hatası gösterir, bir sonraki denetimde kendini toparlar.
+- **Yetişkin içerik uyarısı:** Bazı dizi sayfaları "Sayfaya devam et / Sayfadan çık" pencereli bir yaş onayı gösterir. Onay, `age_verified` çerezine 365 gün yazılır. Paket bu onayı **otomatik vermez**; pencereyi kendiniz bir kez onaylayın. Pencere açıkken sayfa yine de bölüm listesini içerir, takip ve sezon bulma bundan etkilenmez.
+- **Oynatıcı:** Bölüm sayfası kaynak listesini (`#sourceList`) sayfa yüklendikten sonra çeker; oynatıcı ancak bir kaynağa tıklanınca gelir. Paket, hiçbir kaynak seçili değilken listenin ilk kaynağına tıklar ve JWPlayer'ın oynat düğmesine basar. Sitenin kendi oynatıcısı (`AitrVip`) HLS (`.m3u8`) akışı verir.
+- **Gizli tuzak bağlantı:** Dizi sayfasında `/icerik-denetim-...-1-bolum-izle` gibi gizli bir bot tuzağı bağlantısı bulunur. Paketin dizi anahtarı eşleşmesi bu bağlantıyı bölüm listesine almaz; eklenti bu adrese gitmez.
 
 ## Paketleri Güncelleme ve İmzalama
 

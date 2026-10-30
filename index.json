@@ -36,6 +36,26 @@
       ],
       "file": "packs/hdfilmcehennemi.json",
       "sha256": "0129170fe4e5ad553e8de7f58e40e19222f4c38668a47053b60b8db9afa0708b"
+    },
+    {
+      "id": "tranimeizle",
+      "name": "TR Anime İzle",
+      "version": "1.0.0",
+      "lang": "tr",
+      "hosts": [
+        "tranimeizle.live",
+        "*.tranimeizle.live",
+        "tranimeizle.io",
+        "*.tranimeizle.io",
+        "tranimeizle.net",
+        "*.tranimeizle.net",
+        "tranimeizle.top",
+        "*.tranimeizle.top",
+        "tranimeizle.co",
+        "*.tranimeizle.co"
+      ],
+      "file": "packs/tranimeizle.json",
+      "sha256": "7e98bfb1eef7b6abbd9ea0c41a0d2e1cecc5e8f795ba0cef7e33e06ae91006bc"
     }
   ]
 }
